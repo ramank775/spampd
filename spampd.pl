@@ -393,7 +393,6 @@ BEGIN {
 use Getopt::Long qw(GetOptions);
 use Time::HiRes qw(time);
 use Mail::SpamAssassin ();
-use Mail::SpamAssassin::Client ();
 
 our $VERSION = '2.62';
 
@@ -555,6 +554,7 @@ sub init {
 
   my $sa_rules_ver;
   if ($spd_p->{sa_client}) {
+    require Mail::SpamAssassin::Client;
     $sa_c = Mail::SpamAssassin::Client->new($sa_c);
     $self->{assassinc} = $sa_c;
     $self->inf("Pinging sa daemon");
