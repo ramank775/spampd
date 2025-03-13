@@ -1,6 +1,11 @@
 #!/bin/sh
 
 ADDITIONAL_ARGS=""
+
+# Add --debug argument if DEBUG is set to true
+if [ "$DEBUG" = "true" ]; then
+  ADDITIONAL_ARGS="--debug"
+fi
 # Construct the command based on the mode
 if [ "$SPAMPD_SA_MODE" = "remote" ]; then
   ADDITIONAL_ARGS="--saclient  --sa-host=${SPAMPD_SACLIENT_HOST} --sa-port=${SPAMPD_SACLIENT_PORT}"
