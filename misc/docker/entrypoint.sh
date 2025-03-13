@@ -8,9 +8,9 @@ if [ "$DEBUG" = "true" ]; then
 fi
 # Construct the command based on the mode
 if [ "$SPAMPD_SA_MODE" = "remote" ]; then
-  ADDITIONAL_ARGS="--saclient  --sa-host=${SPAMPD_SACLIENT_HOST} --sa-port=${SPAMPD_SACLIENT_PORT}"
+  ADDITIONAL_ARGS="--saclient  --sa-host=${SPAMPD_SACLIENT_HOST} --sa-port=${SPAMPD_SACLIENT_PORT} $ADDITIONAL_ARGS"
 elif [ "$SPAMPD_SA_MODE" = "socket" ]; then
-  ADDITIONAL_ARGS="--saclient --sa-socketpath=${SPAMPD_SACLIENT_SOCKETPATH}"
+  ADDITIONAL_ARGS="--saclient --sa-socketpath=${SPAMPD_SACLIENT_SOCKETPATH} $ADDITIONAL_ARGS"
 fi
 
 if [ -n "$SPAMPC_SACLIENT_USERNAME" ]; then
