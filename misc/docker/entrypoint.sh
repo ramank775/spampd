@@ -12,11 +12,13 @@ if [ -n "$SPAMPC_SACLIENT_USERNAME" ]; then
   ADDITIONAL_ARGS="$ADDITIONAL_ARGS --sa-username=${SPAMPC_SACLIENT_USERNAME}"
 fi
 
+rsyslogd -n &
+
 # Check if any arguments are passed to the script
 if [ $# -gt 0 ]; then
   # Execute the passed arguments as command
   exec "$@"
 else
   # Execute the default command
-  exec "spampd --nodetach --user=spampd --group=spampd --host=$SPAMPD_HOST --relayhost=$SPAMPD_RELAYHOST --sef --tagall $ADDITIONAL_ARGS"
+  exec "/usr/sbin/spampd" "--nodetach" "--logident=spampd" "--user=spampd" "--group=spampd" "--host=$SPAMPD_HOST" "--relayhost=$SPAMPD_RELAYHOST" "--sef" "--tagall" $ADDITIONAL_ARGS
 fi
